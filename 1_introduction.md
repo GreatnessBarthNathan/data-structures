@@ -30,7 +30,7 @@ Data structures are everywhere and having knowledge of them can only help you in
 
 ## Course Overview
 
-Built in data structures
+Built in data structures:
 
 - Arrays
 - Objects
@@ -39,7 +39,7 @@ Built in data structures
 
 We will then use the built in data structures to create Custom data structures
 
-Custom Data Structures
+Custom Data Structures:
 
 - Stacks
 - Queues
