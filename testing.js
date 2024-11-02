@@ -1,9 +1,9 @@
-const obj = {
-  name: "Bruce",
-  age: 25,
-  "key-three": true,
-  sayMyName: function () {
-    console.log(this.name)
-  },
-}
-console.log(Object.entries(obj))
+const set = new Set([1, 2, 3])
+
+// for (const item of set) {
+//   console.log(item)
+// }
+set.add(4)
+set.delete(3)
+set.clear()
+console.log(set)
