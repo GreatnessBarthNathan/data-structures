@@ -1,9 +1,20 @@
-const set = new Set([1, 2, 3])
+const map = new Map([
+  ["a", 1],
+  ["b", 2],
+])
 
-// for (const item of set) {
-//   console.log(item)
-// }
-set.add(4)
-set.delete(3)
-set.clear()
-console.log(set)
+map.set("c", 3)
+console.log(map)
+console.log(map.has("a"))
+map.delete("c")
+
+console.log(map)
+
+for (const [key, value] of map) {
+  console.log(`${key}: ${value}`)
+}
+
+console.log(map.size)
+map.clear()
+
+console.log(map)
