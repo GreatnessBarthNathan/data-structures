@@ -52,3 +52,5 @@ console.log(queueA.peek()) --> cat
 console.log(queueA.print()) --> {'1': 'cat', '2': 'fish', '3': 'bird'}
 
 ```
+
+- Now both 'enqueue' and 'dequeue' has 'constant time complexity'
