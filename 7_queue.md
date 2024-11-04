@@ -27,15 +27,15 @@ Typically a queue is great when you have to process in an orderly fashion. Examp
 
 1. enqueue(element) - add an element to the queue
 
-2. dequeue() - remove the oldest element from the queue
+2. dequeue( ) - remove the oldest element from the queue
 
-3. peek() - get the value of the element at the fromt of the queue without removing it
+3. peek( ) - get the value of the element at the fromt of the queue without removing it
 
-4. isEmpty() - check if the queue is empty
+4. isEmpty( ) - check if the queue is empty
 
-5. size() - get the number of elements in the queue
+5. size( ) - get the number of elements in the queue
 
-6. print() - to visualize the elements in the queue
+6. print( ) - to visualize the elements in the queue
 
 ```
 class Queue {
