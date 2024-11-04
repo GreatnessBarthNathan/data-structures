@@ -1,3 +1,10 @@
+# Queue Optimized
+
+In the previous implementation of the queue data structure we used an array. However, the 'dequeue' operation has a 'linear time complexity' due to the use of the built in shift method
+
+Now let's implement the queue data structure using an object, ensuring both dequeue and enqueue operations have 'constant time complexity'
+
+```
 class Queue {
   constructor() {
     this.items = {}
@@ -33,13 +40,15 @@ class Queue {
 }
 
 const queueA = new Queue()
-console.log(queueA.isEmpty())
+console.log(queueA.isEmpty()) --> true
 queueA.enqueue("dog")
 queueA.enqueue("cat")
 queueA.enqueue("fish")
 queueA.enqueue("bird")
-console.log(queueA.size())
+console.log(queueA.size()) --> 4
 queueA.dequeue()
-console.log(queueA.peek())
+console.log(queueA.peek()) --> cat
 
-console.log(queueA.print())
+console.log(queueA.print()) --> {'1': 'cat', '2': 'fish', '3': 'bird'}
+
+```

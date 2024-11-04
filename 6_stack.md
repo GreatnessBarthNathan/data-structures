@@ -8,6 +8,8 @@ A common analogy is a stack of plates. The last plate placed on top of the stack
 
 Stack is an abstract data type. It is defined by its behavior rather than being a mathematical model
 
+So a stack is simply a list, and what makes it a stack is how it behaves
+
 The Stack data structure supports two main operations:
 
 - Push, which adds an element to the collection
