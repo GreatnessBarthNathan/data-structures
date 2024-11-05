@@ -1,92 +1,57 @@
-class CircularQueue {
-  constructor(capacity) {
-    this.items = new Array(capacity)
-    this.capacity = capacity
-    this.currentLength = 0
-    this.frontPointer = -1
-    this.rearPointer = -1
+class Node {
+  constructor(value) {
+    this.value = value
+    this.next = null
   }
+}
 
-  isFull() {
-    return this.currentLength === this.capacity
+class LinkedList {
+  constructor() {
+    this.head = null
+    this.size = 0
   }
 
   isEmpty() {
-    return this.currentLength === 0
+    return this.size === 0
   }
 
-  enqueue(element) {
-    if (!this.isFull()) {
-      this.rearPointer = (this.rearPointer + 1) % this.capacity
-      this.items[this.rearPointer] = element
-      this.currentLength += 1
-      if (this.frontPointer === -1) {
-        this.frontPointer = this.rearPointer
-      }
-    }
+  getSize() {
+    return this.size
   }
 
-  dequeue() {
+  prepend(value) {
+    const node = new Node(value)
     if (this.isEmpty()) {
-      return null
+      this.head = node
+    } else {
+      node.next = this.head
+      this.head = node
     }
-    this.items[this.frontPointer] = null
-    this.frontPointer = (this.frontPointer + 1) % this.capacity
-    this.currentLength -= 1
-    if (this.isEmpty()) {
-      this.frontPointer = -1
-      this.rearPointer = -1
-    }
-  }
-
-  peek() {
-    if (!this.isEmpty()) {
-      return this.items[this.frontPointer]
-    }
-    return null
-  }
-
-  size() {
-    return this.currentLength
+    this.size++
   }
 
   print() {
     if (this.isEmpty()) {
-      console.log("Queue is empty")
+      console.log("List is empty")
     } else {
-      console.log(this.frontPointer)
-      console.log(this.rearPointer)
-      let i
-      let str = ""
-      for (
-        i = this.frontPointer;
-        i !== this.rearPointer;
-        i = (i + 1) % this.capacity
-      ) {
-        str += this.items[i] + " "
+      let current = this.head
+      let listValues = ""
+      while (current) {
+        listValues += `${current.value} `
+        current = current.next
       }
-
-      str += this.items[i]
-      console.log(str)
+      console.log(listValues)
     }
   }
 }
 
-const queue = new CircularQueue(5)
+const list = new LinkedList()
 
-console.log(queue.isEmpty())
-
-queue.enqueue(10)
-queue.enqueue(20)
-queue.enqueue(30)
-queue.enqueue(40)
-queue.enqueue(50)
-
-console.log(queue.isFull())
-queue.print()
-
-queue.dequeue()
-console.log(queue.peek())
-queue.enqueue(60)
-console.log(queue.size())
-queue.print()
+console.log("List is empty? ", list.isEmpty())
+console.log("List size -", list.getSize())
+list.print()
+list.prepend(10)
+list.print()
+list.prepend(20)
+list.prepend(30)
+list.print()
