@@ -100,8 +100,6 @@ class CircularQueue {
     if (this.isEmpty()) {
       console.log("Queue is empty")
     } else {
-      console.log(this.frontPointer)
-      console.log(this.rearPointer)
       let i
       let str = ""
       for (
