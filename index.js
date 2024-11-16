@@ -1,75 +1,118 @@
-class HashTable {
-  constructor(size) {
-    this.table = new Array(size)
-    this.size = size
+class Node {
+  constructor(value) {
+    this.value = value
+    this.left = null
+    this.right = null
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null
   }
 
-  hash(key) {
-    let total = 0
-    for (let i = 0; i < key.length; i++) {
-      total += key.charCodeAt(i)
-    }
-    return total % this.size
+  isEmpty() {
+    return this.root === null
   }
 
-  set(key, value) {
-    let index = this.hash(key)
-    const bucket = this.table[index]
-    if (!bucket) {
-      this.table[index] = [[key, value]]
+  insert(value) {
+    const newNode = new Node(value)
+
+    if (this.isEmpty()) {
+      this.root = newNode
     } else {
-      let existingKey = bucket.find((item) => item[0] === key)
-      if (existingKey) {
-        existingKey[1] = value
+      let current = this.root
+
+      while (current) {
+        if (value < current.value) {
+          if (current.left === null) {
+            current.left = newNode
+            return
+          } else {
+            current = current.left
+          }
+        } else {
+          if (current.right === null) {
+            current.right = newNode
+            return
+          } else {
+            current = current.right
+          }
+        }
+      }
+    }
+  }
+
+  search(value) {
+    let current = this.root
+    while (current) {
+      if (value === current.value) {
+        return true
+      } else if (value < current.value) {
+        current = current.left
       } else {
-        bucket.push([key, value])
+        current = current.right
       }
     }
+    return false
   }
 
-  get(key) {
-    let index = this.hash(key)
-    const bucket = this.table[index]
-    if (bucket) {
-      let existingKey = bucket.find((item) => item[0] === key)
-      return existingKey[1]
-    }
-    return undefined
-  }
-
-  remove(key) {
-    let index = this.hash(key)
-    const bucket = this.table[index]
-    if (bucket) {
-      let existingKey = bucket.find((item) => item[0] === key)
-      bucket.splice(bucket.indexOf(existingKey), 1)
+  preOrder() {
+    if (this.root === null) {
+      return null
     } else {
-      return
+      let result = []
+      function traversePreOrder(node) {
+        result.push(node.value)
+        node.left && traversePreOrder(node.left)
+        node.right && traversePreOrder(node.right)
+      }
+      traversePreOrder(this.root)
+      return result
     }
   }
 
-  display() {
-    for (let i = 0; i < this.table.length; i++) {
-      if (this.table[i]) {
-        console.log(this.table[i])
+  inOrder() {
+    if (this.root === null) {
+      return null
+    } else {
+      let result = []
+      function traverseInOrder(node) {
+        node.left && traverseInOrder(node.left)
+        result.push(node.value)
+        node.right && traverseInOrder(node.right)
       }
+      traverseInOrder(this.root)
+      return result
+    }
+  }
+
+  postOrder() {
+    if (this.root === null) {
+      return null
+    } else {
+      let result = []
+      function traversePostOrder(node) {
+        node.left && traversePostOrder(node.left)
+        node.right && traversePostOrder(node.right)
+        result.push(node.value)
+      }
+      traversePostOrder(this.root)
+      return result
     }
   }
 }
 
-const table = new HashTable(50)
+const bst = new BinarySearchTree()
 
-table.display()
-table.set("name", "Greatness")
-table.set("age", 32)
-table.set("role", "full-stack")
-table.set("salary", 6000)
-table.set("mane", "Liverpool")
-table.display()
-console.log(table.get("name"))
-console.log(table.get("age"))
-table.display()
-table.set("name", "Nathan")
-console.log(table.get("name"))
-table.remove("age")
-table.display()
+bst.insert(10)
+bst.insert(5)
+bst.insert(3)
+bst.insert(15)
+bst.insert(7)
+console.log(bst.isEmpty())
+// console.log(bst.root)
+
+console.log(bst.preOrder()) // [ 10, 5, 3, 7, 15 ]
+console.log(bst.inOrder()) // [ 3, 5, 7, 10, 15 ]
+console.log(bst.postOrder()) // [ 3, 7, 5, 15, 10 ]
