@@ -101,6 +101,49 @@ class BinarySearchTree {
       return result
     }
   }
+
+  levelOrder() {
+    // preferably use the optimized queue implementation
+    const result = []
+    const queue = []
+    queue.push(this.root)
+    while (queue.length) {
+      let current = queue.shift()
+      result.push(current.value)
+      if (current.left) {
+        queue.push(current.left)
+      }
+
+      if (current.right) {
+        queue.push(current.right)
+      }
+    }
+    return result
+  }
+
+  findMin() {
+    if (this.root === null) {
+      return null
+    } else {
+      let current = this.root
+      while (current.left) {
+        current = current.left
+      }
+      return current.value
+    }
+  }
+
+  findMax() {
+    if (this.root === null) {
+      return null
+    } else {
+      let current = this.root
+      while (current.right) {
+        current = current.right
+      }
+      return current.value
+    }
+  }
 }
 
 const bst = new BinarySearchTree()
@@ -116,3 +159,6 @@ console.log(bst.isEmpty())
 console.log(bst.preOrder()) // [ 10, 5, 3, 7, 15 ]
 console.log(bst.inOrder()) // [ 3, 5, 7, 10, 15 ]
 console.log(bst.postOrder()) // [ 3, 7, 5, 15, 10 ]
+console.log(bst.levelOrder()) // [ 10, 5, 15, 3, 7 ]
+console.log(bst.findMin())
+console.log(bst.findMax())

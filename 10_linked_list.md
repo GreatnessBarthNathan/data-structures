@@ -34,15 +34,18 @@ When a node is isolated it contains a data value and the 'next' pointer pointing
 ## Linked List - Prepend (Empty list)
 
 - Step 1 - create a new node that will be added to the list. The node will have a value and a pointer pointing to null
-  ![linked list prepend](/images/linked_list_3.png)
+
+![linked list prepend](/images/linked_list_3.png)
 
 - Step 2 - if the list is empty we have to make the head point to the new node. Remember the head pointer should always point at the first node in the list. By pointing the head at the newly created node we have effectively prepended our node to an empty list
-  ![linked list prepend](/images/linked_list_4.png)
+
+![linked list prepend](/images/linked_list_4.png)
 
 - Step 3 - If the list is not empty:
 
   - To add a new node at the start, make the newly created node point at the head node and make the newly added node as the head of the list. This will ensure connectivity between the newly added node and the existing list while also ensuring head continues to point at the first node in the list
-    ![linked list prepend](/images/linked_list_5.png)
+
+![linked list prepend](/images/linked_list_5.png)
 
 - Note=> The Time Complexity of the prepending in a linked list is 'constant'
 
@@ -77,10 +80,12 @@ If the list is not empty we have to traverse through the list from the first nod
   - to add a new node at the end, make the last node in the list to point to the new node. This will ensure connectivity between the existing list and the new node. But how do we get hold of the last node?
 
   - we will create a temporary pointer called 'prev' and it will point first at the head since it is the first node on our list. We then advance it till we reach the condition where `prev.next !== null` That will ensure the 'prev' pointer lands at the very last node in the list
-    ![linked list append](/images/linked_list_9.png)
 
-  - once you end up at the last node, we make 'prev.next' point at the new node. This will effectively append the new node to the existing list
-    ![linked list append](/images/linked_list_10.png)
+![linked list append](/images/linked_list_9.png)
+
+- once you end up at the last node, we make 'prev.next' point at the new node. This will effectively append the new node to the existing list
+
+![linked list append](/images/linked_list_10.png)
 
 - Note=> The Time Complexity of the prepending in a linked list is 'linear'
 
@@ -91,29 +96,42 @@ If the list is not empty we have to traverse through the list from the first nod
 We will be inserting a new node at a given index in the list. In this case the method will accept the 'node value' as well as the 'index' at which the node needs to be inserted. The index will lie in the range of '0' to 'size' of the linked list, both inclusive. This will be done across three scenarios:
 
 1. The Index is less than 0 or greater than the size if the list (invalid index) - we simply return from the function
-   ![linked list insert](/images/linked_list_11.png)
+
+![linked list insert](/images/linked_list_11.png)
 
 2. The index is equal to 0 (i.e inserting the new node as the first node in the list) - inserting a new node at the beginning is the same as prepending
-   ![linked list insert](/images/linked_list_12.png)
+
+![linked list insert](/images/linked_list_12.png)
 
 3. The index is valid and greater than 0 (in the middle of the list):
    - lets assume we have three nodes in the list
    - we are going to treat the positions similar to arrays, so the nodes are positioned at `0, 1, 2`
-     ![linked list insert](/images/linked_list_13.png)
-   - lets say we need to insert a new node at index 2 (i.e in between the nodes at position 1 and 2)
-   - The only rule we have to fulfill after insertion is that the node must point to the next node in the right order
-   - what we have to do is make the new node point to the node that `node 1` is pointing at and change the next pointer from `node 1` to the new node
-   - whenever we want to do something that is not at the head of the list, it generally involves a pointer that moves across the list
-   - to insert an element at a given index we need to get a hold of the node previous to that given index. For that purpose we are going to use a temporary pointer called previous
-     ![linked list insert](/images/linked_list_14.png)
-   - we sill start off with previous pointing at the head node. We will then start advancing the `prev` pointer till we reach the index 1
-     ![linked list insert](/images/linked_list_15.png)
-   - at this point we will point the new node's `next` pointer to the previous node's `next` pointer. So the new node will now point at index 2
-     ![linked list insert](/images/linked_list_16.png)
-   - we then connect the previous node's `next` to the new node
-     ![linked list insert](/images/linked_list_17.png)
-   - the new node gets inserted at index 2, the head continues to point at first node and we have our new linked list
-     ![linked list insert](/images/linked_list_18.png)
+
+![linked list insert](/images/linked_list_13.png)
+
+- lets say we need to insert a new node at index 2 (i.e in between the nodes at position 1 and 2)
+- The only rule we have to fulfill after insertion is that the node must point to the next node in the right order
+- what we have to do is make the new node point to the node that `node 1` is pointing at and change the next pointer from `node 1` to the new node
+- whenever we want to do something that is not at the head of the list, it generally involves a pointer that moves across the list
+- to insert an element at a given index we need to get a hold of the node previous to that given index. For that purpose we are going to use a temporary pointer called previous
+
+![linked list insert](/images/linked_list_14.png)
+
+- we sill start off with previous pointing at the head node. We will then start advancing the `prev` pointer till we reach the index 1
+
+![linked list insert](/images/linked_list_15.png)
+
+- at this point we will point the new node's `next` pointer to the previous node's `next` pointer. So the new node will now point at index 2
+
+![linked list insert](/images/linked_list_16.png)
+
+- we then connect the previous node's `next` to the new node
+
+![linked list insert](/images/linked_list_17.png)
+
+- the new node gets inserted at index 2, the head continues to point at first node and we have our new linked list
+
+![linked list insert](/images/linked_list_18.png)
 
 ## Linked List - Remove
 
@@ -122,10 +140,12 @@ Similar to insertion at an index we will be removing a given node at an index ac
 1. Index is less than 0 or greater than the size of the list (invalid index) - we return null as no element can be removed
 
 2. Index is equal to 0 (i.e removing the first node in the list) - removing the head node involves pointing head at the second node in the list. Head will point to its own next pointer. The first node is detached and garbage collected
-   ![linked list remove](/images/linked_list_19.png)
 
-   - If the list has only one element, head will still point at its `next` which is `null`. Head pointing at null indicates an empty list
-     ![linked list remove](/images/linked_list_20.png)
+![linked list remove](/images/linked_list_19.png)
+
+- If the list has only one element, head will still point at its `next` which is `null`. Head pointing at null indicates an empty list
+
+![linked list remove](/images/linked_list_20.png)
 
 3. The index is valid and greater than 0 (in the middle of the list):
 
@@ -134,10 +154,12 @@ Similar to insertion at an index we will be removing a given node at an index ac
 - to delete a node at index 2 we need a reference to the node at index 1. For that purpose we will need a pointer called `prev`
 - we will start off with `prev` starting at the head node. We will then advance the `prev` pointer till we reach the node before the index we want to remove from
 - so a new pointer called `remove` node will be equal to `prev.next`
-  ![linked list remove](/images/linked_list_21.png)
+
+![linked list remove](/images/linked_list_21.png)
 
 - we then break the link from the node at position 1 to the node at position 2, and instead link node at position 1 to node at position 3
-  ![linked list remove](/images/linked_list_22.png)
+
+![linked list remove](/images/linked_list_22.png)
 
 ## Linked List - Remove Value
 
@@ -146,9 +168,11 @@ We will be removing a node from the list, given its value. The method will remov
 1. The list is empty - return null, as there is no node to remove
 
 2. The passed in value is equal to the value of the first node in the list - this involves pointing head at the second node in the list
-   ![linked list remove](/images/linked_list_23.png)
+
+![linked list remove](/images/linked_list_23.png)
 
 If the list has only one node, head will still point at its own next pointer, which is null. And we will have an empty list
+
 ![linked list remove](/images/linked_list_24.png)
 
 3. Value is present in a node that is not the head:
@@ -156,10 +180,12 @@ If the list has only one node, head will still point at its own next pointer, wh
 - let's say we have a linked list of 4 nodes with values `10, 20, 25, 30`. Let's say we need to remove a node with value 25. What we have to do is to make node with value `20` point to node with value `30`
 - to delete a node that contains the given value we need to get a hold of the node previous to that node. For example, to delete a node with vaue `25` we need a reference to node `20`
 - for that purpose we will use a temporary pointer called `prev`. We will start off with `prev` pointing to the head node. We will then advance the `prev` pointer till we reach the node that is previous to the node that contains `25`
-  ![linked list remove](/images/linked_list_25.png)
+
+![linked list remove](/images/linked_list_25.png)
 
 - we then change `prev.next` to `removedNode.next`. This wil provide the continuity required
-  ![linked list remove](/images/linked_list_26.png)
+
+![linked list remove](/images/linked_list_26.png)
 
 - suppose the value passed in is `60` and is not in the list and our `prev` pointer would have advanced to the last node in the list. At that point we check if there is a `next` node. If there is no `next` node it means we have reached the end of the list without finding the node that contains the passed in value. In that case we return `null`
 
@@ -177,7 +203,8 @@ We will find a node, given its value
 2. If the list is not empty - we will create a variable called `count` which will serve as the index as in arrays. Then we will use a temporary pointer called `current` to traverse the list till we find the node pointing to the node with the value
 
 3. If we do not find the node, meaning `current = null`, we will return `-1`
-   ![linked list remove](/images/linked_list_27.png)
+
+![linked list remove](/images/linked_list_27.png)
 
 ## Linked List - Reverse
 
@@ -196,18 +223,22 @@ To achieve this we will do the following:
 2. For every node in the list we execute `four` steps
 
 - Step 1 - we create a new temporary pointer called `next` and point it to `current.next`
-  ![linked list reverse](/images/linked_list_30.png)
+
+![linked list reverse](/images/linked_list_30.png)
 
 - Step 2 - we then set `current.next` to `prev`
-  ![linked list reverse](/images/linked_list_31.png)
+
+![linked list reverse](/images/linked_list_31.png)
 
 - Step 3 - we then update `prev` to `current`, and `current` to `next`. So `prev` now points at `1` and `current` now points at `2`. We repeat the same operation for the second and third nodes
-  ![linked list reverse](/images/linked_list_32.png)
-  ![linked list reverse](/images/linked_list_33.png)
-  ![linked list reverse](/images/linked_list_34.png)
+
+![linked list reverse](/images/linked_list_32.png)
+![linked list reverse](/images/linked_list_33.png)
+![linked list reverse](/images/linked_list_34.png)
 
 - Step 4 - we then assign the `prev` node as the `head` node
-  ![linked list reverse](/images/linked_list_35.png)
+
+![linked list reverse](/images/linked_list_35.png)
 
 ```
 class Node {

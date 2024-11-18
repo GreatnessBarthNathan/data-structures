@@ -144,7 +144,7 @@ Assuming we are using the tree in the previous example
 
 ![binary tree](/images/bst_10.png)
 
-## PostOrder Traversal
+### PostOrder Traversal
 
 Assuming we are using the tree in the previous example
 
@@ -153,6 +153,66 @@ Assuming we are using the tree in the previous example
 3. Read the data of the node
 
 ![binary tree](/images/bst_11.png)
+
+## Breadth First Search (BFS)
+
+With the BFS algorithm we explore all nodes at the present depth prior to moving on to the nodes at the next depth level
+
+For example, if we have a `BST` with `5` nodes, `BFS` visits the root node first, moves on to the nodes at the next level, and the level after that, and so on. As the name indicates, traverse the breadth first
+
+![binary tree](/images/bst_12.png)
+
+### Steps to achieve BFS
+
+- `Step 1` - create a queue
+- `Step 2` - enqueue the root node
+- `Step 3` - as long as the node exists in the queue perform the following operations:
+  - dequeue the node from the front
+  - read the node's value
+  - enqueue the node's left child if it exists
+  - enqueue the node's right child if it exists
+
+Let's assume we have a BST with 5 nodes like in the examples above.
+
+We create an empty queue. We begin by queueing up the root node. We then dequeue the root node and read the value
+
+![binary tree](/images/bst_13.png)
+
+We enque the left child node, followed by the right child node. We check if the queue is empty. It is not. So we dequeue a node and read its value (`5`)
+
+![binary tree](/images/bst_14.png)
+
+We then enqueue the dequeued node's left and child nodes
+
+![binary tree](/images/bst_15.png)
+
+Repeat thesame set of steps for every node in the queue
+
+Dequeue and read the value (`15`). There are no child nodes for `15`, so nothing to enqueue
+
+![binary tree](/images/bst_16.png)
+
+Dequeue and read `3`. Once again, nothing to enqueue since it has no child nodes
+
+![binary tree](/images/bst_17.png)
+
+Dequeue and read `7`. Nothing to enqueue since it has no child nodes
+
+![binary tree](/images/bst_18.png)
+
+The tree is now empty. This indicates that every node has been visited
+
+We will call the method a `levelOrder` since we traverse the nodes one level at a time
+
+## Min Node and Max Node
+
+To find the `minimum value` in the tree is to find the left most leaf node in the tree
+
+![binary tree](/images/bst_19.png)
+
+To find the `maximum value` in the tree is to find the right most leaf node in the tree
+
+![binary tree](/images/bst_20.png)
 
 ## BST Usage
 
