@@ -1,75 +1,117 @@
-class Graph {
+class Node {
+  constructor(value) {
+    this.value = value
+    this.next = null
+    this.prev = null
+  }
+}
+
+class DoublyLinkedList {
   constructor() {
-    this.adjacencyList = {}
+    this.head = null
+    this.tail = null
+    this.size = 0
   }
 
-  addVertex(vertex) {
-    if (!this.adjacencyList[vertex]) {
-      this.adjacencyList[vertex] = new Set()
+  isEmpty() {
+    return this.size === 0
+  }
+
+  getSize() {
+    return this.size
+  }
+
+  prepend(value) {
+    const newNode = new Node(value)
+    if (this.isEmpty()) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      newNode.next = this.head
+      this.head.prev = newNode
+      this.head = newNode
+    }
+    this.size++
+  }
+
+  append(value) {
+    const newNode = new Node(value)
+    if (this.isEmpty()) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      this.tail.next = newNode
+      newNode.prev = this.tail
+      this.tail = newNode
+    }
+    this.size++
+  }
+
+  removeFromFront() {
+    if (!this.isEmpty()) {
+      if (this.size === 1) {
+        this.head = null
+        this.tail = null
+        this.size--
+      } else {
+        this.head = this.head.next
+        this.head.prev = null
+        this.size--
+      }
     }
   }
 
-  addEdge(vertex1, vertex2) {
-    if (!this.adjacencyList[vertex1]) {
-      this.addVertex(vertex1)
+  removeFromEnd() {
+    if (!this.isEmpty()) {
+      if (this.size === 1) {
+        this.head = null
+        this.tail = null
+        this.size--
+      } else {
+        this.tail = this.tail.prev
+        this.tail.next = null
+        this.size--
+      }
     }
-    if (!this.adjacencyList[vertex2]) {
-      this.addVertex(vertex2)
-    }
-    this.adjacencyList[vertex1].add(vertex2)
-    this.adjacencyList[vertex2].add(vertex1)
   }
 
-  removeEdge(vertex1, vertex2) {
-    this.adjacencyList[vertex1].delete(vertex2)
-    this.adjacencyList[vertex2].delete(vertex1)
-  }
-
-  removeVertex(vertex) {
-    if (!this.adjacencyList[vertex]) {
-      return
+  print() {
+    if (this.isEmpty()) {
+      console.log("list is empty")
+    } else {
+      let current = this.head
+      let result = ""
+      while (current) {
+        result += `${current.value} `
+        current = current.next
+      }
+      console.log(result)
     }
-    for (let adjacentVertex of this.adjacencyList[vertex]) {
-      this.removeEdge(vertex, adjacentVertex)
-    }
-    delete this.adjacencyList[vertex]
   }
 
-  hasEdge(vertex1, vertex2) {
-    return (
-      this.adjacencyList[vertex1].has(vertex2) &&
-      this.adjacencyList[vertex2].has(vertex1)
-    )
-  }
-
-  display() {
-    for (let vertex in this.adjacencyList) {
-      console.log(vertex + " -> " + [...this.adjacencyList[vertex]])
+  reverse() {
+    if (!this.isEmpty()) {
+      let current = this.tail
+      let result = ""
+      while (current) {
+        result += `${current.value} `
+        current = current.prev
+      }
+      console.log(result)
     }
   }
 }
 
-const graph = new Graph()
+const list = new DoublyLinkedList()
 
-graph.addVertex("A")
-graph.addVertex("B")
-graph.addVertex("C")
-
-graph.addEdge("A", "B")
-graph.addEdge("B", "C")
-
-graph.display()`A -> B
-                B -> A,C
-                C -> B `
-console.log(graph.hasEdge("A", "C")) // false
-console.log(graph.hasEdge("A", "B")) // true
-
-graph.removeEdge("A", "B")
-graph.display()`A ->
-                B -> C
-                C -> B`
-console.log(graph.hasEdge("A", "B")) // false
-
-graph.removeVertex("B")
-graph.display()`A ->
-                C ->`
+list.prepend(15)
+list.prepend(10)
+list.append(20)
+list.append(25)
+// list.removeFromFront()
+// list.removeFromFront()
+// list.removeFromFront()
+// list.removeFromEnd()
+list.print()
+list.reverse()
+// console.log(list)
